@@ -1,11 +1,36 @@
-const Home = (props) => {
-  // Most all of your work for this lab will be done here in the HomePage component.
+import Landing from './Landing'
+import Form from './Form'
+import Thanks from './Thanks'
+import Error from './Error'
 
-  // Set up conditional rendering below to determine which component to show on our home page!
+const Home = (props) => {
+
+  const renderPage = () => {
+    switch (props.currentPage) {
+      case 0: 
+        return <Landing 
+        incrementPage={props.incrementPage}/>
+      case 1:
+        return <Form 
+        name={props.name} 
+        age={props.age}
+        email={props.email}
+        handleChange={props.handleChange}
+        incrementPage={props.incrementPage} />
+      case 2: 
+        if (props.age >= 18) {
+          return <Thanks resetState={props.resetState}/>
+        } else {
+          return <Error incrementPage={props.incrementPage}/>
+        }
+        default: 
+          return <Landing incrementPage={props.incrementPage}/>
+    }
+  }
 
   return (
     <div className="home">
-      {/* We'll want to render some component here based on a condition that we determine above! */}
+      {renderPage()}
     </div>
   )
 }

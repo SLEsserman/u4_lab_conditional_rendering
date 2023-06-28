@@ -9,7 +9,7 @@ const Form = (props) => {
           type="text"
           name="name"
           placeholder="Your
-           Name"
+          Name"
           value={props.name}
           onChange={props.handleChange}
         />
